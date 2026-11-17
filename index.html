@@ -60,7 +60,7 @@
         <li><b>Email</b> <a href="mailto:pandamusicplayer@protonmail.com">pandamusicplayer@protonmail.com</a></li>
         <li><b>App name</b> <a href="https://play.google.com/store/apps/details?id=com.panda.musicplayerpro" target="_blank" rel="noopener">Panda Music Player-MP3 Player</a></li>
         <li><b>Package name</b> <code>com.panda.musicplayerpro</code></li>
-        <li><b>Effective date</b> 2 August 2026</li>
+        <li><b>Effective date</b> 17 November 2026</li>
       </ul>
 
       <hr>
@@ -73,6 +73,9 @@
         <li><b>Photos (optional):</b> If you choose a photo from your gallery as an app theme or wallpaper, a copy is saved <b>only inside the App's private storage on your device</b>. It is never uploaded anywhere.</li>
         <li><b>System settings (optional):</b> If you use the "Set as ringtone" feature, the App requests permission to modify system settings solely to set your chosen song as your ringtone. This is done only when you use the feature.</li>
         <li><b>Notifications:</b> Used to show the music playback controls and occasional app update announcements. You can turn announcements off any time in the App's Notification settings.</li>
+        <li><b>Equaliser settings:</b> Your bands, bass, reverb and volume-boost values are saved on your device so your sound stays the way you set it.</li>
+        <li><b>Listening statistics (optional):</b> If you turn on Music Recap, the App counts how many times and for how long you played each song, month by month. This stays on your device, is kept for 14 months and then the oldest month drops off automatically. Turning Recap off stops the counting.</li>
+        <li><b>Ringtones and clips you create (optional):</b> Cut on your device and saved there. They are never uploaded.</li>
       </ul>
 
       <h2><span>2.</span>App Permissions Explained</h2>
@@ -80,42 +83,51 @@
       <div class="scroll">
       <table>
         <tr><th>Permission</th><th>Why the App needs it</th></tr>
-        <tr><td><code>INTERNET</code></td><td>Required to load advertisements (Google AdMob), process Premium purchases (Google Play Billing), fetch song lyrics (LRCLIB), and receive app announcements &amp; configuration (Google Firebase).</td></tr>
-        <tr><td><code>ACCESS_NETWORK_STATE</code></td><td>Checks whether the device is online so ads, lyrics, and announcements are only requested when a connection is available. This saves battery and data.</td></tr>
+        <tr><td><code>INTERNET</code></td><td>Required to fetch song lyrics (LRCLIB), process Premium purchases (Google Play Billing), and receive app announcements &amp; configuration (Google Firebase). Playing your music needs none of it — the App works fully offline.</td></tr>
+        <tr><td><code>ACCESS_NETWORK_STATE</code></td><td>Checks whether the device is online so lyrics and announcements are only requested when a connection is available. This saves battery and data.</td></tr>
         <tr><td><code>READ_MEDIA_AUDIO</code></td><td>Reads the music/audio files stored on your device so the App can list and play them (Android 13+). Your files never leave your device.</td></tr>
         <tr><td><code>READ_EXTERNAL_STORAGE</code><br>(Android 12 and below only)</td><td>The older equivalent of the audio permission, used only on Android 12 and below to find and play your music files.</td></tr>
-        <tr><td><code>WRITE_EXTERNAL_STORAGE</code><br>(Android 9 and below only)</td><td>Used only on Android 9 and below to save the ringtone file when you use the "Set as ringtone" feature.</td></tr>
+        <tr><td><code>WRITE_EXTERNAL_STORAGE</code><br>(Android 9 and below only)</td><td>Used only on Android 9 and below to save a ringtone or clip that you asked the App to create.</td></tr>
         <tr><td><code>FOREGROUND_SERVICE</code> &amp;<br><code>FOREGROUND_SERVICE_MEDIA_PLAYBACK</code></td><td>Lets music keep playing in the background (screen off / other apps open) and shows the standard playback notification with play/pause/skip controls, as required by Android for media apps.</td></tr>
         <tr><td><code>POST_NOTIFICATIONS</code></td><td>Shows the music playback control notification and occasional app announcements. Announcements can be turned off in the App's Notification settings; Android also lets you control this permission at any time.</td></tr>
         <tr><td><code>WAKE_LOCK</code></td><td>Prevents the device's processor from sleeping while music is actively playing, so playback does not stop when the screen turns off. Released automatically when playback stops.</td></tr>
         <tr><td><code>WRITE_SETTINGS</code></td><td>Used only for the optional "Set as ringtone" feature, to save your chosen song as the device ringtone. This is a special permission — Android asks you to approve it separately, and the App only requests it when you use the feature.</td></tr>
-        <tr><td><code>com.google.android.gms.permission.AD_ID</code></td><td>Required by Google AdMob on Android 13+ to show advertisements using the device's resettable Advertising ID. Used solely for advertising by Google; Premium users see no ads. You can reset or delete your Advertising ID in device settings.</td></tr>
+        <tr><td><code>MODIFY_AUDIO_SETTINGS</code></td><td>Required by Android before any app may run an equaliser or sound effects on its own playback. It does not change your phone's system volume or other apps' sound.</td></tr>
+        <tr><td><code>SYSTEM_ALERT_WINDOW</code><br>("Display over other apps")</td><td>Draws the optional floating music bar over other apps. It is off by default; you grant this yourself in your phone's settings, and until you do, nothing appears. The bar shows only the song that is already playing and which output the sound is going to. It cannot see other apps or read what is on your screen.</td></tr>
         <tr><td><code>com.android.vending.BILLING</code></td><td>Enables Google Play's secure in-app purchase system for the Premium subscription and lifetime purchase. All payments are handled entirely by Google Play.</td></tr>
       </table>
       </div>
-      <div class="note">The App does <b>not</b> request access to your camera, microphone, contacts, SMS, call logs, or precise location.</div>
+      <div class="note">The App does <b>not</b> request access to your camera, microphone, contacts, SMS, call logs, body sensors, precise location, your photos or your documents — and it does <b>not</b> use the Advertising ID.</div>
 
-      <h2><span>3.</span>Information Collected Automatically (Third-Party Services)</h2>
-      <p>The App itself does not collect personal information. However, the following trusted third-party services used by the App may collect limited data as described in their own privacy policies:</p>
+      <h2><span>3.</span>The Extra Features, and What They Use</h2>
+      <p>These features are switched off by default. Turning one on changes nothing about what leaves your phone — every one of them runs entirely on your device.</p>
       <ul>
-        <li><b>Google AdMob (advertising):</b> The App shows three ad formats to non-Premium users — a small <b>banner</b> in the player, an occasional full-screen <b>interstitial</b>, and an <b>app-open</b> ad when launching the App. To serve and measure these ads, Google AdMob may collect your device's resettable <b>Advertising ID</b>, approximate location derived from IP address, device model, and app interaction data, as described in <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google's Privacy Policy</a> and <a href="https://support.google.com/admob/answer/6128543" target="_blank" rel="noopener">how Google uses data in AdMob</a>. You can reset or delete your Advertising ID and opt out of ad personalisation in your device's Google settings. <b>Premium users are never shown ads.</b></li>
-        <li><b>Google Play Billing (purchases &amp; subscriptions):</b> All Premium purchases are processed entirely by Google Play's secure billing system. We never see, receive, or store your payment details (card numbers, banking or wallet information). Google provides us only with an anonymous purchase confirmation so the App can unlock Premium.</li>
-        <li><b>Google Firebase (Google LLC):</b> The App uses <b>Firebase Cloud Messaging</b> to deliver optional app announcements (push notifications), and <b>Cloud Firestore / Realtime Database</b> to fetch remote app configuration such as home-screen banners, this privacy policy link, and developer information. To deliver notifications, Firebase processes an anonymous device token and basic device information. No personal identity is attached to this data. See the <a href="https://firebase.google.com/support/privacy" target="_blank" rel="noopener">Firebase Privacy documentation</a>.</li>
-        <li><b>Lyrics service (LRCLIB):</b> When you view lyrics (a Premium feature), the App sends only the <b>song title, artist name, and duration</b> of the currently playing track to the free LRCLIB service to find matching lyrics. No personal information is sent.</li>
+        <li><b>Ringtone cutter:</b> Cuts the song you choose on your phone and saves the piece in your phone's <b>Ringtones › Panda</b> folder, so Android's own settings can find it. The song is never uploaded. Delete the file like any other and it is gone.</li>
+        <li><b>Share clip as status:</b> Builds a short clip or a picture card from the song and its cover art, in the App's own temporary folder. Nothing is posted anywhere by the App — Android's share sheet opens and <b>you</b> choose where it goes. Whatever app you send it to then handles it under its own privacy policy.</li>
+        <li><b>Floating music bar (Premium):</b> A small bar that can sit over other apps while music plays. It shows the title, artist and cover of the song that is <i>already playing</i>, and whether the sound is going to the phone speaker, headphones or Bluetooth. All of that is read from the player on your device. It cannot see other apps, cannot read your screen, and sends nothing anywhere.</li>
+        <li><b>Music Recap and the daily reminder:</b> Recap reads the listening statistics stored on your phone and draws a summary card. The daily reminder is a notification your own phone schedules for the morning — no server is involved, and no one is told what you listen to.</li>
+        <li><b>Android Auto:</b> When your phone is connected to a car, the App hands your song, album and playlist names and the cover images to Android Auto so the car's screen can show them. That is Android's own media system on the same device; nothing goes to us or to the car maker.</li>
       </ul>
 
-      <h2><span>4.</span>How We Use Information &amp; App Features</h2>
-      <p>The App's features include: local music playback with background play, playlists, search, sleep timer, playback speed, gapless playback, crossfade and volume controls, synced lyrics (Premium), custom themes and accent colours, full-screen photo wallpapers (Premium), changeable app icons (Premium), "Set as ringtone", multi-language support (31 languages), and optional announcements. Information is used only to:</p>
+      <h2><span>4.</span>Information Collected Automatically (Third-Party Services)</h2>
+      <p>The App itself does not collect personal information. <b>It contains no advertising SDK and no analytics.</b> The following trusted third-party services used by the App may process limited data as described in their own privacy policies:</p>
       <ul>
-        <li>To play your local music and provide the app features listed above (themes, ringtones, lyrics).</li>
-        <li>To show ads to non-Premium users and remove ads for Premium users.</li>
+        <li><b>Google Play Billing (purchases &amp; subscriptions):</b> All Premium purchases are processed entirely by Google Play's secure billing system. We never see, receive, or store your payment details (card numbers, banking or wallet information). Google provides us only with an anonymous purchase confirmation so the App can unlock Premium.</li>
+        <li><b>Google Firebase (Google LLC):</b> The App uses <b>Firebase Cloud Messaging</b> to deliver optional app announcements (push notifications), and <b>Cloud Firestore / Realtime Database</b> to fetch remote app configuration such as home-screen banners, this privacy policy link, and developer information. To deliver notifications, Firebase processes an anonymous device token and basic device information. No personal identity is attached to this data. See the <a href="https://firebase.google.com/support/privacy" target="_blank" rel="noopener">Firebase Privacy documentation</a>.</li>
+        <li><b>Lyrics service (LRCLIB):</b> When you view lyrics, the App sends only the <b>song title, artist name, and duration</b> of the currently playing track to the free LRCLIB service to find matching lyrics. No personal information is sent.</li>
+      </ul>
+
+      <h2><span>5.</span>How We Use Information &amp; App Features</h2>
+      <p>The App's features include: local music playback with background play, playlists, search, sleep timer, playback speed, gapless playback, crossfade and volume controls, an equaliser with sound effects, visual effects, synced lyrics (Premium), the floating music bar (Premium), custom themes and accent colours, full-screen photo wallpapers (Premium), changeable app icons (Premium), a ringtone cutter, status clips, Music Recap, Android Auto, multi-language support (31 languages), and optional announcements. Information is used only to:</p>
+      <ul>
+        <li>To play your local music and provide the app features listed above (themes, ringtones, lyrics, equaliser).</li>
         <li>To process and restore Premium purchases through Google Play.</li>
         <li>To send occasional app announcements, which you can disable in the App's settings.</li>
       </ul>
       <div class="note">We do <b>not</b> sell your data. We do <b>not</b> upload your music, photos, contacts, or files. We do <b>not</b> require registration or login.</div>
 
-      <h2><span>5.</span>Premium Subscription &amp; Purchases</h2>
-      <p>The App offers an optional <b>Premium</b> upgrade that removes all advertisements and unlocks extra features (synced lyrics, exclusive app icons, and full-screen photo wallpapers). Three options are available through Google Play:</p>
+      <h2><span>6.</span>Premium Subscription &amp; Purchases</h2>
+      <p><b>The App shows no advertisements at all</b>, whether or not you buy Premium. The optional <b>Premium</b> upgrade unlocks extra features — synced lyrics, the floating music bar, all visual effects, exclusive app icons, accent colours and full-screen photo wallpapers. Three options are available through Google Play:</p>
       <ul>
         <li><b>Monthly subscription</b> — renews automatically every month until cancelled.</li>
         <li><b>Yearly subscription</b> — renews automatically every year until cancelled.</li>
@@ -123,16 +135,14 @@
       </ul>
       <ul>
         <li>Prices are shown in your local currency inside the App and on Google Play before you confirm any purchase.</li>
+        <li>Where a <b>free trial</b> is offered, it is shown on the purchase screen before you confirm. When the trial ends it turns into a paid subscription automatically and your Google Play account is charged, unless you cancel before the trial ends.</li>
         <li>Subscriptions renew automatically unless cancelled at least 24 hours before the end of the current period. You can cancel any time in <b>Google Play → Payments &amp; subscriptions → Subscriptions</b> — cancelling stops future charges and Premium remains active until the period ends.</li>
         <li>Purchases can be restored on a new device with the "Restore purchases" button inside the App, using the same Google account.</li>
         <li>Refunds are handled by Google Play under <a href="https://support.google.com/googleplay/answer/2479637" target="_blank" rel="noopener">Google Play's refund policy</a>.</li>
       </ul>
 
-      <h2><span>6.</span>Data Storage &amp; Security</h2>
+      <h2><span>7.</span>Data Storage &amp; Security</h2>
       <p>Your preferences (theme, language, settings, Premium status) are stored locally on your device. Payments are secured by Google Play. Communication with our services uses encrypted HTTPS connections. If you uninstall the App, all locally stored App data is removed from your device.</p>
-
-      <h2><span>7.</span>Advertising ID</h2>
-      <p>The App declares the <code>com.google.android.gms.permission.AD_ID</code> permission, which is required by Google AdMob to display advertisements on Android 13 and above. The Advertising ID is used only for advertising and analytics purposes by Google AdMob, and you may reset or delete it at any time from your device's privacy settings. Premium users are not shown ads.</p>
 
       <h2><span>8.</span>Children's Privacy</h2>
       <p>The App is a general-audience music player and is not directed at children under 13. We do not knowingly collect personal information from children. If you believe a child has provided personal information through the App, please contact us and we will take appropriate action.</p>
@@ -140,7 +150,9 @@
       <h2><span>9.</span>Your Choices &amp; Rights</h2>
       <ul>
         <li>Turn off push notifications inside the App (Settings → Notification settings) or in your device settings.</li>
-        <li>Reset or delete your Advertising ID in your device's Google settings, or opt out of ad personalisation.</li>
+        <li>Turn the floating music bar off in <b>Settings → Extra features</b>, or revoke "Display over other apps" in your phone's settings.</li>
+        <li>Turn Music Recap off in <b>Settings → Extra features</b> and the App stops counting what you play.</li>
+        <li>Turn the daily reminder off in <b>Settings → Extra features</b>, or block the notification in Android.</li>
         <li>Remove all App data by uninstalling the App.</li>
         <li>Manage or cancel Premium subscriptions any time via the Google Play Store.</li>
         <li>Contact us with any privacy questions or requests using the email below.</li>
